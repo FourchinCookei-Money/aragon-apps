@@ -28,5 +28,5 @@ jobs:
             IPFS_CLUSTER_HOST: ${{ secrets.IPFS_CLUSTER_HOST }}
           run: |
             cat ./cids | while read CID; do
-              $GITHUB_WORKSPACE/ipfs-cluster-ctl/ipfs-cluster-ctl --basic-auth $IPFS_CLUSTER_BASIC_AUTH --host "$IPFS_CLUSTER_HOST" pin $CID
+              $GITHUB_WORKSPACE/ipfs-cluster-ctl/ipfs-cluster-ctl --basic-auth $IPFS_CLUSTER_BASIC_AUTH --host "$IPFS_CLUSTER_HOST" pin add $CID
             done
