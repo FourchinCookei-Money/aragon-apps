@@ -24,10 +24,9 @@ jobs:
             tar xvfz ipfs-cluster-ctl_v0.14.1_linux-amd64.tar.gz
         - name: pin on cluster
           env: 
-            CID: ${{ steps.publish.outputs.cid }}
             IPFS_CLUSTER_BASIC_AUTH: ${{ secrets.IPFS_CLUSTER_BASIC_AUTH }}
             IPFS_CLUSTER_HOST: ${{ secrets.IPFS_CLUSTER_HOST }}
           run: |
             cat ./cids | while read CID; do
-              $GITHUB_WORKSPACE/ipfs-cluster-ctl/ipfs-cluster-ctl --basic-auth $IPFS_CLUSTER_BASIC_AUTH --host "$IPFS_CLUSTER_HOST" add -r $CID
+              echo $GITHUB_WORKSPACE/ipfs-cluster-ctl/ipfs-cluster-ctl --basic-auth $IPFS_CLUSTER_BASIC_AUTH --host "$IPFS_CLUSTER_HOST" add -r $CID
             done
